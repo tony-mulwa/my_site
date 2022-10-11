@@ -29,7 +29,7 @@ function Header() {
     setAnchorEl(event.currentTarget);
   };
   return (
-    <AppBar sx={{ position: "sticky" }}>
+    <AppBar sx={{ position: "sticky", width: "100%" }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Typography variant="h5">YourSite</Typography>
         <Stack direction="row" sx={{ alignItems: "center" }}>
@@ -52,7 +52,7 @@ function Header() {
         onClose={() => setAnchorEl(null)}
       >
         <MenuItem onClick={() => navigate("user/profile")}>Profile</MenuItem>
-        <MenuItem>Login</MenuItem>
+        <MenuItem onClick={() => navigate("/auth/login")}>Login</MenuItem>
       </Menu>
     </AppBar>
   );

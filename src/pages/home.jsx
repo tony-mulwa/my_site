@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <Stack
       sx={{
-        margin: "30% auto",
+        margin: "70px auto",
         justifyContent: "center",
         alignItems: "center",
       }}

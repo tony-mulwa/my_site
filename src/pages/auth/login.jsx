@@ -3,7 +3,6 @@ import {
   Button,
   Divider,
   Link,
-  Paper,
   Stack,
   TextField,
   Typography,
@@ -47,43 +46,46 @@ export default function Login() {
         justifyContent: "center",
       }}
     >
-      <Paper sx={{ width: "400px" }}>
-        <Stack spacing={2} component="form" onSubmit={HandleSubmit}>
-          <Typography variant="h4">Login</Typography>
-          <Typography variant="subtitle1">
-            Not a user yet?
-            <Link href="/auth/register" sx={{ margin: "auto 5px" }}>
-              Register
-            </Link>
-            now.
-          </Typography>
-          <Button variant="outlined" fullWidth>
-            Continue with Google
-          </Button>
-          <Divider>
-            <Typography>or</Typography>
-          </Divider>
-          <TextField
-            onChange={HandleChange}
-            name="email"
-            label="Email"
-            type="email"
-            required
-            placeholder="example@mail.com"
-          />
-          <TextField
-            onChange={HandleChange}
-            name="password"
-            label="Password"
-            type="password"
-            required
-          />
+      <Stack
+        spacing={2}
+        sx={{ width: "400px" }}
+        component="form"
+        onSubmit={HandleSubmit}
+      >
+        <Typography variant="h4">Login</Typography>
+        <Typography variant="subtitle1">
+          Not a user yet?
+          <Link href="/auth/register" sx={{ margin: "auto 5px" }}>
+            Register
+          </Link>
+          now.
+        </Typography>
+        <Button variant="outlined" fullWidth>
+          Continue with Google
+        </Button>
+        <Divider>
+          <Typography>or</Typography>
+        </Divider>
+        <TextField
+          onChange={HandleChange}
+          name="email"
+          label="Email"
+          type="email"
+          required
+          placeholder="example@mail.com"
+        />
+        <TextField
+          onChange={HandleChange}
+          name="password"
+          label="Password"
+          type="password"
+          required
+        />
 
-          <Button type="submit" variant="contained" fullWidth>
-            Login
-          </Button>
-        </Stack>
-      </Paper>
+        <Button type="submit" variant="contained" fullWidth>
+          Login
+        </Button>
+      </Stack>
     </Box>
   );
 }

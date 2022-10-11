@@ -1,26 +1,56 @@
-import { Box, Grid } from "@mui/material";
+import {
+  Stack,
+  Typography,
+  Avatar,
+  Paper,
+  Button,
+  Modal,
+  TextField,
+} from "@mui/material";
+import { useState } from "react";
 
 export default function Profile() {
+  const [open, setOpen] = useState(false);
   return (
-    <>
-      <Grid container>
-        {/* children */}
-        <Grid item xs={12} sm={4} lg={4}>
-          <Box
-            sx={{ width: "100%", height: "400px", backgroundColor: "blue" }}
-          ></Box>
-        </Grid>
-        <Grid item xs={12} sm={8} lg={5}>
-          <Box
-            sx={{ width: "100%", height: "400px", backgroundColor: "gray" }}
-          ></Box>
-        </Grid>
-        <Grid item xs={12} sm={12} lg={3}>
-          <Box
-            sx={{ width: "100%", height: "400px", backgroundColor: "green" }}
-          ></Box>
-        </Grid>
-      </Grid>
-    </>
+    <Stack sx={{ margin: "50px" }} spacing={1}>
+      <Typography variant="h5">User profile </Typography>
+      <Paper
+        fullWidth
+        spacing={3}
+        component={Stack}
+        direction="row"
+        sx={{ alignItems: "center", padding: "10px " }}
+      >
+        <Avatar sx={{ width: 150, height: 150 }} />
+        <Stack spacing={1}>
+          <Typography>Username : Antony mulwa</Typography>
+          <Typography>Email : antony@mail.com</Typography>
+          <Typography>Phone Number : +254721894218</Typography>
+        </Stack>
+      </Paper>
+      <Button variant="outlined" onClick={() => setOpen(true)}>
+        Update profile
+      </Button>
+
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <Stack
+          spacing={2}
+          sx={{
+            backgroundColor: "white",
+            margin: "50px auto",
+            padding: "15px",
+            width: "400px",
+            borderRadius: 3,
+          }}
+        >
+          <Typography variant="h4">Update profile</Typography>
+          <TextField type="file" accept="image/*" />
+          <TextField label="Username" value="antony mulwa" />
+          <TextField label="Email" type="email" value="antony@mail.com" />
+          <TextField label="Phonenumber" value="+254721894218" />
+          <Button variant="contained">update</Button>
+        </Stack>
+      </Modal>
+    </Stack>
   );
 }

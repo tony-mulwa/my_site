@@ -3,7 +3,6 @@ import {
   Button,
   Divider,
   Link,
-  Paper,
   Stack,
   TextField,
   Typography,
@@ -49,67 +48,70 @@ export default function Register() {
         justifyContent: "center",
       }}
     >
-      <Paper sx={{ width: "400px" }}>
-        <Stack spacing={2} component="form" onSubmit={HandleSubmit}>
-          <Typography variant="h4">Register</Typography>
-          <Typography variant="subtitle1">
-            Already a user?
-            <Link href="/auth/login" sx={{ margin: "auto 5px" }}>
-              Login
-            </Link>
-            now.
-          </Typography>
-          <Button variant="outlined" fullWidth>
-            Register with Google
-          </Button>
-          <Divider>
-            <Typography>or</Typography>
-          </Divider>
-          <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-            <TextField
-              onChange={HandleChange}
-              name="username"
-              label="UserName"
-              type="text"
-              required
-            />
-            <TextField
-              onChange={HandleChange}
-              name="phoneNumber"
-              label="PhoneNumber"
-              type="text"
-              required
-            />
-          </Stack>
-
+      <Stack
+        spacing={2}
+        sx={{ width: "400px" }}
+        component="form"
+        onSubmit={HandleSubmit}
+      >
+        <Typography variant="h4">Register</Typography>
+        <Typography variant="subtitle1">
+          Already a user?
+          <Link href="/auth/login" sx={{ margin: "auto 5px" }}>
+            Login
+          </Link>
+          now.
+        </Typography>
+        <Button variant="outlined" fullWidth>
+          Register with Google
+        </Button>
+        <Divider>
+          <Typography>or</Typography>
+        </Divider>
+        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
           <TextField
             onChange={HandleChange}
-            name="email"
-            label="Email"
-            placeholder="example@mail.com"
-            type="email"
+            name="username"
+            label="UserName"
+            type="text"
             required
           />
           <TextField
             onChange={HandleChange}
-            name="password"
-            label="Password"
-            type="password"
+            name="phoneNumber"
+            label="PhoneNumber"
+            type="text"
             required
           />
-          <TextField
-            onChange={HandleChange}
-            name="confirmPassword"
-            label="Confirm Password"
-            type="password"
-            required
-          />
-
-          <Button type="submit" variant="contained" fullWidth>
-            Register
-          </Button>
         </Stack>
-      </Paper>
+
+        <TextField
+          onChange={HandleChange}
+          name="email"
+          label="Email"
+          placeholder="example@mail.com"
+          type="email"
+          required
+        />
+        <TextField
+          onChange={HandleChange}
+          name="password"
+          label="Password"
+          type="password"
+          required
+        />
+        <TextField
+          onChange={HandleChange}
+          name="confirmPassword"
+          label="Confirm Password"
+          type="password"
+          required
+        />
+
+        <Button type="submit" variant="contained" fullWidth>
+          Register
+        </Button>
+      </Stack>
     </Box>
   );
 }

@@ -12,8 +12,10 @@ import {
   TextField,
 } from "@mui/material";
 import { useReducer, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./App.css";
+import { logout, login } from "./state/authSlice";
 
 // reducer
 const initialState = {
@@ -51,7 +53,10 @@ function LocalReducer(state, action) {
 
 export default function App() {
   const [state, dispatch] = useReducer(LocalReducer, initialState);
+  const userState = useSelector((state) => state.auth.user);
+  const authDispatch = useDispatch();
 
+  console.log(userState);
   function OpenModal() {
     dispatch({ type: "openModal" });
   }
@@ -76,16 +81,32 @@ export default function App() {
             anchorEl={state.openMenu}
             onClose={CloseMenu}
           >
-            <MenuItem>Profile</MenuItem>
-            <MenuItem onClick={OpenModal}>Login</MenuItem>
+            {userState ? (
+              <>
+                <MenuItem>Profile</MenuItem>
+                <MenuItem>Logout</MenuItem>
+              </>
+            ) : (
+              <>
+                <MenuItem onClick={OpenModal}>Login</MenuItem>
+              </>
+            )}
           </Menu>
         </Toolbar>
       </AppBar>
       <Stack sx={{ margin: "70px auto", alignItems: "center" }}>
-        <Typography variant="h3">Welcome guest.</Typography>
-        <Button variant="outlined" onClick={OpenModal}>
-          Login
-        </Button>
+        <Typography variant="h3">
+          Welcome {userState ? userState.username : "guest."}
+        </Typography>
+        {userState ? (
+          <Button variant="outlined" onClick={() => authDispatch(logout())}>
+            Logout
+          </Button>
+        ) : (
+          <Button variant="outlined" onClick={OpenModal}>
+            Login
+          </Button>
+        )}
       </Stack>
 
       <Modal
@@ -115,7 +136,7 @@ function ModalBody() {
           password: null,
         }
   );
-
+  const authDispatch = useDispatch();
   const registerFields = [
     { name: "Email", type: "email" },
     { name: "Username", type: "text" },
@@ -141,6 +162,8 @@ function ModalBody() {
   function HandleSubmit(event) {
     event.preventDefault();
     console.log(formData);
+
+    authDispatch(login(formData));
   }
   return (
     <Stack

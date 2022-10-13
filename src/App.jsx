@@ -23,11 +23,11 @@ export default function App() {
     },
     validationSchema: Yup.object({
       username: Yup.string()
-        .min(4, "Username should be grater than 4")
+        .min(4, "Username should be 4 characters long.")
         .required("Username required."),
       email: Yup.string().email("Invalid email").required("Email required."),
       password: Yup.string()
-        .min(8, "Password should ne 8 characters long")
+        .min(8, "Password should Be 8 characters long.")
         .required("Password required."),
     }),
   });
